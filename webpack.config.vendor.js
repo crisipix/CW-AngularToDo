@@ -17,8 +17,12 @@ const treeShakableModules = [
 const nonTreeShakableModules = [
     'bootstrap',
     'bootstrap/dist/css/bootstrap.css',
-    'es6-promise',
-    'es6-shim',
+    'font-awesome/css/font-awesome.min.css',
+    'primeng/primeng',
+    'primeng/resources/themes/omega/theme.css',
+    'primeng/resources/primeng.min.css',
+    'core-js/es6',
+    'core-js/es7/reflect',
     'event-source-polyfill',
     'jquery',
 ];
