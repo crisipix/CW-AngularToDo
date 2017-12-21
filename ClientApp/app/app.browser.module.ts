@@ -16,7 +16,7 @@ import { AppComponent } from './components/app/app.component';
 import 'primeng/primeng';
 import 'primeng/resources/themes/omega/theme.css';
 import 'primeng/resources/primeng.min.css';
-
+import "@angular/material/prebuilt-themes/indigo-pink.css";
 import 'hammerjs';
 
 @NgModule({

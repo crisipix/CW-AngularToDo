@@ -22,3 +22,16 @@ https://stackoverflow.com/questions/43442770/prerendering-failed-because-of-erro
 
 <app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
 <app asp-ng2-prerender-module="ClientApp/dist/main-server">Loading...</app>
+
+Commands for NPM
+ *   "test": "karma start ClientApp/test/karma.conf.js",
+ *   "clean": "rimraf wwwroot",
+ *   "webpack": "webpack --config webpack.config.js",
+ *   "webpack:vendor": "webpack --config webpack.config.vendor.js",
+ *   "webpack:all": "npm run clean && npm run webpack:vendor && npm run webpack",
+ *   "webpack:prod": "npm run clean && npm run webpack:vendor && webpack --config webpack.config.prod.js --env.prod",
+ *   "start": "start http://localhost:5000 && dotnet run --environment=\"Development\"",
+ *   "start:prod": "start http://localhost:5000 && dotnet run --environment=\"Production\""
+
+ npm outdated <-- see what needs to be updated. 
+ npm update   <-- update items that need it

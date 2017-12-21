@@ -21,6 +21,7 @@ const nonTreeShakableModules = [
     'primeng/primeng',
     'primeng/resources/themes/omega/theme.css',
     'primeng/resources/primeng.min.css',
+    '@angular/material/prebuilt-themes/indigo-pink.css',
     'core-js/es6',
     'core-js/es7/reflect',
     'event-source-polyfill',

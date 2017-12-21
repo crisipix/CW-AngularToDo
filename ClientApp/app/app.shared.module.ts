@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AccordionModule } from 'primeng/primeng';     //accordion and accordion tab
-//import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatInputModule} from '@angular/material/input';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -23,8 +26,14 @@ import { CounterComponent } from './components/counter/counter.component';
     imports: [
         CommonModule,
         HttpModule,
+        HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
         AccordionModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatStepperModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
