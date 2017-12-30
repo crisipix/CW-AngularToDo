@@ -11,14 +11,18 @@
             <th>Id</th>
             <th>Title</th>
             <th>Completed</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let todo of todos">
+        <tr *ngFor="let todo of todos; let i = index">
             <td>{{ todo.userId }}</td>
             <td>{{ todo.id }}</td>
             <td>{{ todo.title }}</td>
-            <td>{{ todo.completed }}</td>
+            <td><i *ngIf="todo.completed" style="color:green;" class="fa fa-check fa-2x" aria-hidden="true"></i>
+            <i *ngIf="!todo.completed" style="color:red;" class="fa fa-close fa-2x" aria-hidden="true"></i>
+            </td>
+            <td><button class="btn btn-primary" (click)="OnDelete(todo.id, i)">Delete</button></td>
         </tr>
     </tbody>
 </table>

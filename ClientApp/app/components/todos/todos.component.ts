@@ -26,7 +26,17 @@ export class ToDosComponent implements OnInit {
         this._http.get('https://jsonplaceholder.typicode.com/todos')
         .subscribe(result => {
             this.todos = result as ToDo[];
-        });
+        }, error => console.error(error));
+    }
+
+    OnDelete(id:number, index:number)
+    {
+        this._http.delete('https://jsonplaceholder.typicode.com/todos/'+id)
+        .subscribe(result => {
+         console.log(`deleted ${id}`);
+         this.todos.splice(index,1);
+        }, error => {console.error(`failed to delete todo ${id}`)});
+
     }
 }
 
