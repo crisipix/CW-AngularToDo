@@ -4,11 +4,11 @@ import {HttpClient} from '@angular/common/http'
 import { getBaseUrl } from '../../app.browser.module';
 
 @Component({
-    selector: 'fetchdata',
-    templateUrl: './fetchdata.component.html'
+    selector: 'todos',
+    templateUrl: './todos.component.html'
 })
-export class FetchDataComponent implements OnInit {
-    public forecasts: WeatherForecast[];
+export class ToDosComponent implements OnInit {
+    public todos: ToDo[];
     _http: HttpClient;
     constructor(//http: Http, 
                 http: HttpClient,
@@ -23,16 +23,16 @@ export class FetchDataComponent implements OnInit {
 
     ngOnInit()
     {
-        this._http.get(getBaseUrl + 'api/SampleData/WeatherForecasts')
+        this._http.get('https://jsonplaceholder.typicode.com/todos')
         .subscribe(result => {
-            this.forecasts = result as WeatherForecast[];
+            this.todos = result as ToDo[];
         });
     }
 }
 
-interface WeatherForecast {
-    dateFormatted: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
+interface ToDo {
+    userId: number;
+    id: number;
+    title: string;
+    completed: boolean;
 }
