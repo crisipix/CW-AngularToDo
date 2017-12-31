@@ -28,6 +28,9 @@
                     <input matInput placeholder="User id" formControlName="userId" required [matAutocomplete]="auto">
                 </mat-form-field>
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <!-- it's better to select the whole user object so you ca use it for display purposes
+                        and then take the data you need later. 
+                        this.newToDo = this.todoFormGroup.value as ToDo; -->
                         <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
                           {{ user.name }}
                         </mat-option>
