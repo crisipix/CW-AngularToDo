@@ -15,6 +15,8 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -44,6 +46,8 @@ import { ToDosComponent } from './components/todos/todos.component';
         MatInputModule,
         MatStepperModule,
         MatCardModule,
+        MatAutocompleteModule,
+        MatSelectModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
