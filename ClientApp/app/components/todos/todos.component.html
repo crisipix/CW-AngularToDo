@@ -1,8 +1,43 @@
 <h1>List of items to do</h1>
 
-<p>This component demonstrates fetching data from the server. https://jsonplaceholder.typicode.com/todos</p>
+<p>This component demonstrates fetching data from the server. https://jsonplaceholder.typicode.com/todos
+    random images are from https://placeimg.com/
+</p>
 
-<p *ngIf="!todos"><em>Loading...</em></p>
+<p *ngIf="!todos">
+    <em>Loading...</em>
+</p>
+<div>
+        <button *ngIf="todos" (click)=OnShowAdd() class="btn btn-primary">Add</button>
+</div>
+
+
+<mat-card class="example-card" *ngIf="showAdd">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Insert a new to do item not inline with the table. </mat-card-title>
+        <mat-card-subtitle>To do item</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://placeimg.com/200/200/any" alt="Photo of random stuff"> -->
+    <mat-card-content>
+            <form class="example-container" [formGroup]="todoFormGroup" (ngSubmit)="OnAdd($event)">
+                <mat-form-field [floatLabel]="never">
+                    <mat-label>User Id</mat-label>
+                    <input matInput placeholder="User id" formControlName="userId" required>
+                </mat-form-field>
+                <mat-form-field [floatLabel]="never">
+                    <mat-label>To do title</mat-label>
+                    <input matInput placeholder="To do title" formControlName="title" required>
+                </mat-form-field>
+                <mat-checkbox formControlName="completed">Is Task Completed?</mat-checkbox>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+    </mat-card-content>
+</mat-card>
+
+
+
+
 
 <table class='table' *ngIf="todos">
     <thead>
@@ -15,14 +50,39 @@
         </tr>
     </thead>
     <tbody>
+        <tr *ngIf="showAdd" [formGroup]="todoFormGroup">
+            <td class="example-container">
+                <mat-form-field [floatLabel]="never">
+                    <mat-label>User Id</mat-label>
+                    <input matInput placeholder="User id" formControlName="userId" required>
+                </mat-form-field>
+            </td>
+            <td class="example-container">
+            </td>
+            <td class="example-container">
+                <mat-form-field [floatLabel]="never">
+                    <mat-label>To do title</mat-label>
+                    <input matInput placeholder="To do title" formControlName="title" required>
+                </mat-form-field>
+            </td>
+            <td class="example-container">
+                <mat-checkbox formControlName="completed">Is Task Completed?</mat-checkbox>
+            </td>
+            <td class="example-container">
+                <button class="btn btn-primary" (click)="OnAdd($event)">Submit</button>
+            </td>
+        </tr>
         <tr *ngFor="let todo of todos; let i = index">
             <td>{{ todo.userId }}</td>
             <td>{{ todo.id }}</td>
             <td>{{ todo.title }}</td>
-            <td><i *ngIf="todo.completed" style="color:green;" class="fa fa-check fa-2x" aria-hidden="true"></i>
-            <i *ngIf="!todo.completed" style="color:red;" class="fa fa-close fa-2x" aria-hidden="true"></i>
+            <td align="center">
+                <i *ngIf="todo.completed" style="color:green;" class="fa fa-check fa-2x" aria-hidden="true"></i>
+                <i *ngIf="!todo.completed" style="color:red;" class="fa fa-close fa-2x" aria-hidden="true"></i>
             </td>
-            <td><button class="btn btn-primary" (click)="OnDelete(todo.id, i)">Delete</button></td>
+            <td>
+                <button class="btn btn-primary" (click)="OnDelete(todo.id, i)">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>

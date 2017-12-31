@@ -14,6 +14,7 @@ import { AccordionModule } from 'primeng/primeng';     //accordion and accordion
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -42,6 +43,7 @@ import { ToDosComponent } from './components/todos/todos.component';
         MatCheckboxModule,
         MatInputModule,
         MatStepperModule,
+        MatCardModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
