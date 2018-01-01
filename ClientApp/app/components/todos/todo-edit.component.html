@@ -1,0 +1,42 @@
+<h1>List of items to do</h1>
+
+<p>This component demonstrates fetching data from the server and sending data. https://jsonplaceholder.typicode.com/todos
+    random images are from https://placeimg.com/
+</p>
+
+<p *ngIf="!todo">
+    <em>Loading...</em>
+</p>
+
+<mat-card class="example-card" *ngIf="todo">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Update an existing to do. </mat-card-title>
+        <mat-card-subtitle>To do item</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://placeimg.com/200/200/any" alt="Photo of random stuff"> -->
+    <mat-card-content>
+            <form class="example-container" [formGroup]="todoFormGroup" (ngSubmit)="OnAdd($event)">
+                    <!-- Now we'll need to link the text input to its panel. We can do this by exporting the autocomplete panel instance into a local template variable (here we called it "auto"),
+                         and binding that variable to the input's userAutocomplete property. -->
+                <mat-form-field [floatLabel]="never">
+                    <mat-label>User Id</mat-label>
+                    <input matInput placeholder="User" formControlName="user" required [matAutocomplete]="auto">
+                </mat-form-field>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <!-- it's better to select the whole user object so you ca use it for display purposes
+                        and then take the data you need later. 
+                        this.newToDo = this.todoFormGroup.value as ToDo; -->
+                        <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+                          {{ user.name }}
+                        </mat-option>
+                </mat-autocomplete>
+                <mat-form-field [floatLabel]="never">
+                    <mat-label>To do title</mat-label>
+                    <input matInput placeholder="To do title" formControlName="title" required>
+                </mat-form-field>
+                <mat-checkbox formControlName="completed">Is Task Completed?</mat-checkbox>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+    </mat-card-content>
+</mat-card>

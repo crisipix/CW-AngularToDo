@@ -1,0 +1,26 @@
+.form-container > * {
+    width: 50%;
+  }
+
+.example-container > * {
+    width: 100%;
+  }
+
+  .example-container form {
+    margin-bottom: 20px;
+  }
+  
+  .example-container form > * {
+    margin: 5px 0;
+  }
+
+  .example-card {
+    width: 400px;
+    padding: 20,20;
+    margin: 20,20;
+  }
+  
+  .example-header-image {
+    background-image: url('https://placeimg.com/100/100/any');
+    background-size: cover;
+  }

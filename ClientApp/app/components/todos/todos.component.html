@@ -25,7 +25,7 @@
                          and binding that variable to the input's userAutocomplete property. -->
                 <mat-form-field [floatLabel]="never">
                     <mat-label>User Id</mat-label>
-                    <input matInput placeholder="User id" formControlName="userId" required [matAutocomplete]="auto">
+                    <input matInput placeholder="User id" formControlName="user" required [matAutocomplete]="auto">
                 </mat-form-field>
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                         <!-- it's better to select the whole user object so you ca use it for display purposes
@@ -66,7 +66,7 @@
                 and binding that variable to the input's userAutocomplete property. -->
                 <mat-form-field [floatLabel]="never">
                     <mat-label>User Id</mat-label>
-                    <input matInput placeholder="User id" formControlName="userId" required [matAutocomplete]="auto">
+                    <input matInput placeholder="User id" formControlName="user" required [matAutocomplete]="auto">
                 </mat-form-field>
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                         <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
@@ -87,6 +87,7 @@
             </td>
             <td class="example-container">
                 <button class="btn btn-primary" (click)="OnAdd($event)">Submit</button>
+                
             </td>
         </tr>
         <tr *ngFor="let todo of todos; let i = index">
@@ -99,6 +100,8 @@
             </td>
             <td>
                 <button class="btn btn-primary" (click)="OnDelete(todo.id, i)">Delete</button>
+                <button class="btn btn-primary" (click)="EditToDo(todo)">Edit</button>
+                
             </td>
         </tr>
     </tbody>

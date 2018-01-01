@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { getBaseUrl } from '../../app.browser.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
@@ -25,6 +26,7 @@ export class ToDosComponent implements OnInit {
 
     constructor(//http: Http, 
         http: HttpClient,
+        private router: Router,
         @Inject('BASE_URL') baseUrl: string,
         private _formBuilder: FormBuilder) {
         // Remove this
@@ -49,18 +51,28 @@ export class ToDosComponent implements OnInit {
             error => { console.error(error) });
 
         this.todoFormGroup = this._formBuilder.group({
-            userId: ['', Validators.required],
+            user: ['', Validators.required],
             title: ['', Validators.required],
             completed: [false]
         });
 
-        this.filteredUsers = this.todoFormGroup.controls.userId.valueChanges
+        this.filteredUsers = this.todoFormGroup.controls.user.valueChanges
         .pipe(
           startWith(''),
           map(name =>name ? this.filterUsers(name) : this.users.slice())
         );
 
     }
+
+    EditToDo(toDo: ToDo) {
+        console.log('navigate to', toDo);
+        let toDoId = toDo ? toDo.id : null;
+        // Pass along the todo id if available
+        // so that the list component can select that hero.
+        // Include a junk 'foo' property for fun.
+        //this.router.navigate(['/todos/edit', { id: toDoId, foo: 'foo' }]);
+        this.router.navigate(['/todos/edit/'+toDoId]);
+      }
 
     OnDelete(id: number, index: number) {
         this._http.delete('https://jsonplaceholder.typicode.com/todos/' + id)
@@ -102,20 +114,18 @@ export class ToDosComponent implements OnInit {
             this.newToDo = this.todoFormGroup.value as ToDo;
          */
         this.newToDo = {
-            userId : this.todoFormGroup.controls.userId.value.id,
+            userId : this.todoFormGroup.controls.user.value.id,
             id : 0,
             title : this.todoFormGroup.controls.title.value,
             completed : this.todoFormGroup.controls.completed.value,
 
         };
-        
-       
 
         this._http.post('https://jsonplaceholder.typicode.com/todos/', this.newToDo)
             .subscribe(result => {
                 console.log(`inserted`,this.newToDo);
                 this.todos.push(result as ToDo);
-                //(<FormGroup>this.todoFormGroup).setValue({userId : null, title : null, completed : false}, { onlySelf: true });
+                //(<FormGroup>this.todoFormGroup).setValue({user : null, title : null, completed : false}, { onlySelf: true });
                 this.todoFormGroup.reset();
                 this.showAdd = false;
             }, error => { console.error(`failed to post todo ${this.newToDo}`) });
@@ -132,7 +142,7 @@ export class ToDosComponent implements OnInit {
       }
 }
 
-interface ToDo {
+export interface ToDo {
     userId: number;
     id: number;
     title: string;
@@ -142,12 +152,12 @@ interface ToDo {
 /*
     User information
 */
-interface Geo {
+export interface Geo {
     lat: string;
     lng: string;
 }
 
-interface Address {
+export interface Address {
     street: string;
     suite: string;
     city: string;
@@ -155,13 +165,13 @@ interface Address {
     geo: Geo;
 }
 
-interface Company {
+export interface Company {
     name: string;
     catchPhrase: string;
     bs: string;
 }
 
-interface User {
+export interface User {
     id: number;
     name: string;
     username: string;

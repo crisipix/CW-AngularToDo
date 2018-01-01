@@ -24,6 +24,9 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { ToDosComponent } from './components/todos/todos.component';
+import { ToDoEditComponent } from './components/todos/todo-edit.component';
+import { ToDoDetailComponent } from './components/todos/todo-detail.component';
+ 
 
 @NgModule({
     declarations: [
@@ -32,7 +35,9 @@ import { ToDosComponent } from './components/todos/todos.component';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        ToDosComponent
+        ToDosComponent,
+        ToDoEditComponent,
+        ToDoDetailComponent
     ],
     imports: [
         CommonModule,
@@ -54,6 +59,8 @@ import { ToDosComponent } from './components/todos/todos.component';
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'todos', component: ToDosComponent },
+            { path: 'todos/:id', component: ToDoDetailComponent },
+            { path: 'todos/edit/:id', component: ToDoEditComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
