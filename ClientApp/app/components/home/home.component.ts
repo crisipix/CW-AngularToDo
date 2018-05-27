@@ -9,13 +9,17 @@ export class HomeComponent {
     isLinear = false;
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
-    constructor(private _formBuilder: FormBuilder) { }
+    constructor(private _formBuilder: FormBuilder) { 
+      this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', Validators.required]
+      });
+      this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['', Validators.required]
+      });
+
+    }
+
     ngOnInit() {
-        this.firstFormGroup = this._formBuilder.group({
-          firstCtrl: ['', Validators.required]
-        });
-        this.secondFormGroup = this._formBuilder.group({
-          secondCtrl: ['', Validators.required]
-        });
+       
       }
 }
